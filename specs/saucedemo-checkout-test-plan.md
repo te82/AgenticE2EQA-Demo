@@ -258,5 +258,20 @@ Comprehensive test plan for the SauceDemo e-commerce checkout process covering a
     - expect: Submit buttons remain accessible
   4. Verify mobile-specific navigation patterns
     - expect: Back buttons function correctly on mobile
-    - expect: Touch targets are appropriately sized
-    - expect: Mobile browser navigation works properly
+
+## Execution Notes
+
+- Use standard_user / secret_sauce credentials for all scenarios.
+- Prefer stable selectors like data-test attributes when automating.
+- Validate both happy-path and validation-error flows.
+- Record screenshots at key states: login, cart, checkout, overview, confirmation.
+- Run at least once in Chromium; extend to Firefox and WebKit as browser coverage expands.
+
+## Exit Criteria
+
+The QA workflow is complete when:
+- all acceptance criteria are covered,
+- the checkout happy path passes,
+- validation error cases are verified,
+- the final report is saved to test-results/SCRUM-101-checkout-test-report.md, and
+- the artifacts are committed and pushed to the active repo.

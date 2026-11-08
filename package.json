@@ -6,7 +6,10 @@
   "directories": {
     "test": "tests"
   },
-  "scripts": {},
+  "scripts": {
+    "test:html": "npx playwright test --config=playwright.config.ts",
+    "report:extent": "node scripts/generate-extent-agent-report.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

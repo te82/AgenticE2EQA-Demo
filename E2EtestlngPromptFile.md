@@ -222,14 +222,14 @@ Include:
 
 ## 🚀 STEP 7: Commit to Git Repository
 
-**Git Repository URL:** `https://github.com/Ram131815/AgentE2ETesting.gitt`
+**Git Repository URL:** `https://github.com/te82/github20999.git`
 
 **Prompt:**
 ```
 Now I need to commit all the test artifacts to the Git repository using the GitHub MCP
 server.
 
-Git Repository URL: https://github.com/Ram131815/AgentE2ETesting.git
+Git Repository URL: https://github.com/te82/github20999.git
 
 Please perform the following Git operations:
 
