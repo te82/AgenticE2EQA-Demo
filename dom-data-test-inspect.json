@@ -1,0 +1,142 @@
+[
+  {
+    "tag": "HEADER",
+    "dataset": {
+      "test": "header-container"
+    },
+    "text": "Open MenuAll ItemsDynamic CatalogAboutLo"
+  },
+  {
+    "tag": "DIV",
+    "dataset": {
+      "test": "primary-header"
+    },
+    "text": "Open MenuAll ItemsDynamic CatalogAboutLo"
+  },
+  {
+    "tag": "IMG",
+    "dataset": {
+      "test": "open-menu"
+    },
+    "text": ""
+  },
+  {
+    "tag": "A",
+    "dataset": {
+      "test": "inventory-sidebar-link"
+    },
+    "text": "All Items"
+  },
+  {
+    "tag": "A",
+    "dataset": {
+      "test": "dynamic-catalog-sidebar-link"
+    },
+    "text": "Dynamic Catalog"
+  },
+  {
+    "tag": "A",
+    "dataset": {
+      "test": "about-sidebar-link"
+    },
+    "text": "About"
+  },
+  {
+    "tag": "A",
+    "dataset": {
+      "test": "logout-sidebar-link"
+    },
+    "text": "Logout"
+  },
+  {
+    "tag": "A",
+    "dataset": {
+      "test": "reset-sidebar-link"
+    },
+    "text": "Reset App State"
+  },
+  {
+    "tag": "IMG",
+    "dataset": {
+      "test": "close-menu"
+    },
+    "text": ""
+  },
+  {
+    "tag": "A",
+    "dataset": {
+      "test": "shopping-cart-link"
+    },
+    "text": "2"
+  },
+  {
+    "tag": "SPAN",
+    "dataset": {
+      "test": "shopping-cart-badge"
+    },
+    "text": "2"
+  },
+  {
+    "tag": "DIV",
+    "dataset": {
+      "test": "secondary-header"
+    },
+    "text": "ProductsName (A to Z)Name (A to Z)Name ("
+  },
+  {
+    "tag": "SPAN",
+    "dataset": {
+      "test": "title"
+    },
+    "text": "Products"
+  },
+  {
+    "tag": "SPAN",
+    "dataset": {
+      "test": "active-option"
+    },
+    "text": "Name (A to Z)"
+  },
+  {
+    "tag": "SELECT",
+    "dataset": {
+      "test": "product-sort-container"
+    },
+    "text": "Name (A to Z)Name (Z to A)Price (low to "
+  },
+  {
+    "tag": "DIV",
+    "dataset": {
+      "test": "inventory-container"
+    },
+    "text": "Sauce Labs Backpackcarry.allTheThings() "
+  },
+  {
+    "tag": "DIV",
+    "dataset": {
+      "test": "inventory-list"
+    },
+    "text": "Sauce Labs Backpackcarry.allTheThings() "
+  },
+  {
+    "tag": "DIV",
+    "dataset": {
+      "test": "inventory-item"
+    },
+    "text": "Sauce Labs Backpackcarry.allTheThings() "
+  },
+  {
+    "tag": "A",
+    "dataset": {
+      "test": "item-4-img-link"
+    },
+    "text": ""
+  },
+  {
+    "tag": "IMG",
+    "dataset": {
+      "test": "inventory-item-sauce-labs-backpack-img"
+    },
+    "text": ""
+  }
+]

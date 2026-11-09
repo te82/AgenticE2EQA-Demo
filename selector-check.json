@@ -1,0 +1,3 @@
+{
+  "loginButton": "<input class=\"submit-button btn_action\" data-test=\"login-button\" id=\"login-button\" type=\"submit\" value=\"Login\" name=\"login-button\">"
+}

@@ -4,21 +4,27 @@ This document walks through a complete end-to-end QA workflow demo, using natura
 
 ---
 
-## 🎯 STEP 1: Read User Story
+## 🎯 STEP 1: Fetch Jira Story Description and Create Test Plan File
 
 **Prompt:**
 ```
-I need to start a new testing workflow. Please read the user story from the file:
-user-stories/SCRUM-101-ecommerce-checkout.md
+I need to start a new testing workflow. First, fetch only the user story description content from Jira for project KAN and identify the relevant story issue(s).
 
-Summarize the key requirements, acceptance criteria, and testing scope.
+Use the Atlassian/Jira MCP tool to:
+1. Search Jira issues for project = KAN
+2. Read only the description field of the relevant story/ies
+3. Extract the user story description content alone (not metadata such as status, assignee, or board details)
+4. Save the description content into a markdown file at: specs/saucedemo-checkout-test-plan.md
+5. Ensure the file contains only the Jira story description text in a clean, usable test-plan format
+
+After saving, summarize the extracted story description and confirm the file was created in the specs folder.
 ```
 
 **Expected Output:**
-- Summary of the user story
-- List of acceptance criteria
-- Application URL and test credentials
-- Key features to test
+- Jira story description content fetched from the issue
+- Markdown file created at specs/saucedemo-checkout-test-plan.md
+- Clean summary of the story narrative and scope
+- No unrelated Jira metadata included in the saved file
 
 ---
 
@@ -55,7 +61,7 @@ Ensure each test scenario includes:
 
 ---
 
-## ✏️ STEP 3: Perform Exploratory Testing
+## ✏️ STEP 3: Perform Dicovery/Exploratory Testing
 
 **Prompt:**
 ```
@@ -222,14 +228,14 @@ Include:
 
 ## 🚀 STEP 7: Commit to Git Repository
 
-**Git Repository URL:** `https://github.com/te82/github20999.git`
+**Git Repository URL:** `https://github.com/hmm102/AgenticE2ETesting.git`
 
 **Prompt:**
 ```
 Now I need to commit all the test artifacts to the Git repository using the GitHub MCP
 server.
 
-Git Repository URL: https://github.com/te82/github20999.git
+Git Repository URL: https://github.com/hmm102/AgenticE2ETesting.git
 
 Please perform the following Git operations:
 
@@ -258,52 +264,3 @@ Please perform the following Git operations:
 - Descriptive commit message following conventional commit format
 - Confirmation of successful push to the provided repository
 - Summary of changes
-
----
-
-## 📋 Complete Workflow Execution
-
-**Single Combined Prompt (for Demo):**
-
-```
-I want to demonstrate a complete end-to-end QA workflow using natural language and MCP
-servers.
-
-STEP 1 - READ USER STORY:
-First, read the user story from: user-stories/SCRUM-101-ecommerce-checkout.md
-Provide a brief summary of what needs to be tested.
-
-STEP 2 - CREATE TEST PLAN:
-Use the playwright-test-planner agent to create a comprehensive test plan based on the user
-story. The agent should explore the application URL from the user story and cover all
-acceptance criteria. Save it as: specs/saucedemo-checkout-test-plan.md
-
-STEP 3 - EXPLORATORY TESTING:
-Read the test plan from specs/saucedemo-checkout-test-plan.md and use Playwright browser
-tools to manually execute each test scenario. Document findings with screenshots and note
-any issues discovered.
-
-STEP 4 - GENERATE AUTOMATION SCRIPTS:
-Review both the test plan (specs/saucedemo-checkout-test-plan.md) and exploratory testing
-results from Step 3. Use the playwright-test-generator agent to create JavaScript
-automation scripts leveraging the element selectors and insights discovered during manual
-testing. Save scripts in tests/saucedemo-checkout/.
-
-STEP 5 - EXECUTE AND HEAL TESTS:
-Run all automation scripts from tests/saucedemo-checkout/. Use the playwright-test-healer
-agent to identify and auto-heal any failing tests. Re-run tests until all are stable and
-passing. Document healing activities.
-
-STEP 6 - CREATE TEST REPORT:
-Create a comprehensive test execution report at: test-results/SCRUM-101-checkout-test-
-report.md
-Compile results from Step 3 (manual testing), Step 4 (script generation), and Step 5
-(execution and healing). Include PASS/FAIL status, healing summary, defects log, and test
-coverage analysis.
-
-STEP 7 - COMMIT TO GIT:
-Use the GitHub MCP agent to commit all new files with a descriptive message and push to the
-repository.
-
-Execute this complete workflow and provide status updates after each step.
-```
