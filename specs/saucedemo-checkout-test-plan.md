@@ -1,85 +1,140 @@
-# SCRUM-101 - SauceDemo Checkout Test Plan
+# SauceDemo Checkout E2E Test Plan
 
-## Objective
-Validate the end-to-end customer checkout experience from product selection through order confirmation.
+## User Story Summary
+As a customer, I want to review my cart, complete the checkout flow, and receive order confirmation so I can purchase products successfully and confidently.
 
-## Application
-SauceDemo storefront at https://www.saucedemo.com/
-
-## Test Data
+## Application Under Test
+- URL: https://www.saucedemo.com/
 - Username: standard_user
 - Password: secret_sauce
-- Products used: Sauce Labs Backpack, Sauce Labs Bike Light, Sauce Labs Fleece Jacket
-- Sample checkout data: John / Doe / 12345
 
-## Scenarios
+## Scope
+This plan covers cart review, checkout, validation, confirmation, and edge cases for the SauceDemo ecommerce purchase journey.
 
-### 1. Complete Checkout Flow - Happy Path
+## Acceptance Criteria Coverage
+1. Cart page shows selected products with item names, descriptions, quantities, and pricing.
+2. User can continue shopping or proceed to checkout from the cart.
+3. Checkout form validates required fields and shows clear error messages for invalid or empty input.
+4. Checkout overview displays ordered items, payment details, shipping details, and total amount including tax.
+5. Completing checkout shows a confirmation page and allows return to the product list.
+6. Workflow handles edge cases like invalid combinations, navigation back and forth, and cart integrity.
+
+## Test Data
+- Valid user credentials: standard_user / secret_sauce
+- Valid checkout form values:
+  - First Name: Jane
+  - Last Name: Doe
+  - ZIP Code: 12345
+- Invalid data examples:
+  - Empty first name
+  - Empty last name
+  - Empty postal code
+  - Missing required field combinations
+
+## Test Scenarios
+
+### TC-01: Add products and review cart details
+**Goal:** Verify the user can add products and review cart contents.
+
+**Steps:**
 1. Log in with valid credentials.
-2. Add multiple products to the cart.
-3. Open the cart and verify items.
-4. Proceed to checkout.
-5. Fill valid checkout information.
-6. Review order totals and finish the order.
-7. Confirm the order completion page appears.
+2. Add two products to the cart.
+3. Open the cart.
+4. Review product names, quantities, descriptions, and prices.
 
-Expected results:
-- Products page loads after login.
-- Cart count updates correctly.
-- Cart page shows all selected products.
-- Checkout overview shows item totals and tax.
-- Order confirmation page appears with a success message.
+**Expected Results:**
+- Products appear in the cart with correct details.
+- Cart badge reflects number of items added.
+- Cart total is displayed correctly.
 
-### 2. Cart Review and Navigation
-1. Add items to the cart.
-2. Open the cart page.
-3. Verify item detail display and cart actions.
-4. Use Continue Shopping and Remove features.
+### TC-02: Continue shopping from cart
+**Goal:** Verify the user can return to products from the cart.
 
-Expected results:
-- Cart preserves items while navigating.
-- Prices and names remain visible.
-- Product state updates after removal.
+**Steps:**
+1. Open the cart page.
+2. Click Continue Shopping.
+3. Confirm the product listing page is visible.
 
-### 3. Validation Errors
-1. Open checkout information form with items in the cart.
-2. Click Continue without filling required fields.
-3. Submit partial customer information and verify field-specific errors.
-4. Re-enter valid data and continue.
+**Expected Results:**
+- User is returned to the inventory page.
+- Previously added items remain in the cart state unless removed.
 
-Expected results:
-- Error messages show: First Name is required, Last Name is required, Postal Code is required.
-- Form remains on the same page until corrected.
+### TC-03: Proceed to checkout from cart
+**Goal:** Verify checkout can be initiated from cart.
 
-### 4. Order Overview Verification
-1. Complete customer information.
-2. Review payment, shipping, and total details.
-3. Validate item summary and price calculations.
+**Steps:**
+1. Add a product to cart.
+2. Click the cart icon and select Checkout.
+3. Confirm the checkout information page loads.
 
-Expected results:
-- Payment information shows SauceCard #31337.
-- Shipping details show Free Pony Express Delivery.
-- Total matches item total plus tax.
+**Expected Results:**
+- User navigates to the checkout form.
+- Required fields are displayed.
 
-### 5. Order Completion Confirmation
-1. Finish the order.
-2. Verify order confirmation messaging.
-3. Return to the products page.
+### TC-04: Validate required checkout fields
+**Goal:** Verify required validation errors appear for empty form values.
 
-Expected results:
-- Completion page displays the thank-you message.
-- Cart is cleared after checkout completion.
-- The user can start a fresh shopping session.
+**Steps:**
+1. Start checkout with a valid cart.
+2. Leave all fields blank and click Continue.
+3. Retry with only partial values.
 
-### 6. Edge Cases and Error Handling
-1. Test special characters and long text in checkout fields.
-2. Check rapid repeated clicks.
-3. Navigate back and forward through the flow.
+**Expected Results:**
+- Clear validation error messages appear.
+- User remains on the checkout form until required fields are corrected.
 
-Expected results:
-- Validation remains reliable and consistent.
-- No duplicate orders or unexpected state changes occur.
-- Cart state remains intact.
+### TC-05: Submit valid checkout information
+**Goal:** Verify valid order information allows progress.
+
+**Steps:**
+1. Complete the checkout form with valid values.
+2. Click Continue.
+
+**Expected Results:**
+- User is taken to the checkout overview page.
+- Items, payment information, shipping information, and totals are displayed.
+
+### TC-06: Review order overview and finalize purchase
+**Goal:** Verify the overview page displays complete order information and allows purchase.
+
+**Steps:**
+1. Review the overview page.
+2. Confirm the product list, price totals, and payment/shipping details.
+3. Click Finish.
+
+**Expected Results:**
+- Overview shows item details and total including tax.
+- Confirmation page loads after Finish.
+- Order completion message is shown.
+
+### TC-07: Confirmation page and return to products
+**Goal:** Verify purchase completion is confirmed and the user can return to inventory.
+
+**Steps:**
+1. Complete checkout.
+2. View confirmation page.
+3. Click Back Home or Return to Products.
+
+**Expected Results:**
+- Thank-you confirmation appears.
+- User returns to product list successfully.
+- Cart count resets or reflects the expected post-purchase state.
+
+### TC-08: Navigation and cart state integrity edge cases
+**Goal:** Verify the checkout workflow behaves correctly when users navigate back and forth.
+
+**Steps:**
+1. Add items to cart.
+2. Navigate back to products and cart repeatedly.
+3. Continue to checkout, hit back, and change values.
+4. Submit valid data after a prior invalid attempt.
+
+**Expected Results:**
+- Cart contents remain consistent.
+- User is not blocked by stale or lost state.
+- Validation behaves correctly across repeated navigation.
 
 ## Exit Criteria
-The workflow passes when the happy path, validation checks, cart navigation, and order completion behaviors are each verified on the target application.
+- All above scenarios pass in the browser-based validation flow.
+- Validation messages and navigation are correct.
+- A complete checkout journey successfully ends in confirmation.

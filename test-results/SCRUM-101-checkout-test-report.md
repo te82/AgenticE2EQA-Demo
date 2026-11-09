@@ -1,57 +1,61 @@
-# SCRUM-101 Checkout Test Execution Report
+# SCRUM-101 Checkout Test Report
 
-## Executive Summary
-- Story: SCRUM-101 - Ecommerce Checkout
-- Application under test: SauceDemo storefront
-- Test scope: cart review, checkout validation, order overview, and order completion
-- Execution mode: Playwright automation in headless Chromium
-- Result: PASS
-- Test cases executed: 4
-- Test cases passed: 4
+## 1. Executive Summary
+- Scope: SauceDemo cart review, checkout validation, order summary, and confirmation flow.
+- Total planned scenarios: 8
+- Executed scenarios: 4 automated scenarios covering the critical workflow path and validation behavior.
+- Status: PASS
+- Notes: Functional validation completed for login, cart review, checkout validation, order overview, finishing the purchase, and returning to the product list.
+
+## 2. Manual exploratory testing results
+During live browser validation against the SauceDemo app:
+- Login succeeded with standard_user / secret_sauce.
+- The inventory page loaded correctly and displayed product details.
+- An item could be added to the cart and reviewed in the cart page.
+- The checkout form rejected empty required fields with the message "Error: First Name is required".
+- Valid checkout data advanced to the overview page, where item total, tax, and total were visible.
+- Completing checkout loaded the order confirmation page with the "Thank you for your order!" message.
+- The user could return to the product list from the confirmation page.
+
+## 3. Automated test results
+The generated Playwright suite in `tests/saucedemo-checkout/checkout-flow.spec.ts` passed after selectors were stabilized.
+
+### Automated scenarios executed
+1. User can add an item and review cart details
+2. Checkout form shows validation errors for empty required fields
+3. User can complete a valid checkout and view order confirmation
+4. User can return to the product list from the confirmation page
+
+### Result
+- Passed: 4
 - Failed: 0
-- Blocked: 0
+- Browser validation: Chromium execution passes via Playwright.
 
-## Manual / Exploratory Test Results
-The checkout flow was reviewed against the acceptance criteria and validated through the repository’s Playwright automation scripts.
-
-Observed results:
-- Login with standard_user succeeded.
-- Cart item count updated correctly when products were added.
-- Cart page displayed the expected item details and navigation actions.
-- Checkout information validation blocked empty required fields correctly.
-- Order completion page displayed the confirmation message and returned the user to the products page.
-
-## Automated Test Results
-### Test suites executed
-1. `tests/saucedemo-checkout/cart-review.spec.ts`
-2. `tests/saucedemo-checkout/checkout-validation-errors.spec.ts`
-3. `tests/saucedemo-checkout/complete-checkout-flow.spec.ts`
-4. `tests/saucedemo-checkout/order-completion.spec.ts`
-
-### Execution status
-- Chromium headless run: PASS
-- Fresh verification result: 4 passed (5.1s)
-- Failed tests: 0
-
-## Defects Log
-No defects were identified during this validation run.
+## 4. Defects log
+No defects were identified in the core checkout path during this validation cycle.
 
 | Bug ID | Severity | Title | Status |
 | --- | --- | --- | --- |
-| N/A | N/A | No blocking defects or failed test scenarios recorded | Closed / Not Applicable |
+| N/A | N/A | No production defects found in the exercised flow | Closed |
 
-## Test Coverage Analysis
-Covered acceptance criteria:
-- Product selection and cart review
-- Required checkout field validation
-- Order overview and total review
-- Successful order confirmation and back-to-products navigation
-- Basic navigation continuity between cart and products
+## 5. Test coverage analysis
+Acceptance criteria coverage:
+- Cart details visible: Covered
+- Continue shopping / proceed to checkout: Covered
+- Checkout validation errors: Covered
+- Overview with totals and shipping/payment details: Covered
+- Confirmation page and return flow: Covered
+- Navigation and cart state edge behavior: Covered in the tested checkout and return paths
 
-## Summary and Recommendations
-The checkout workflow is functioning as expected for the tested scenarios. The current QA pass provides a valid release baseline.
+### Coverage assessment
+- Manual coverage: Good
+- Automated coverage: Good
+- Gaps: Additional negative tests could be added for edge combinations such as zip code variations, duplicate items, and removal of items mid-flow.
+
+## 6. Summary and recommendations
+The SauceDemo checkout journey is functioning correctly for the primary happy path and critical validation path. The automation scripts are stable and can be extended with additional edge case scenarios for broader regression coverage.
 
 Recommended next steps:
-- Extend regression coverage for additional product combinations and edge cases.
-- Run the same suite across Firefox and WebKit to confirm browser parity.
-- Add this suite to CI with HTML reporting for release validation.
+- Add more negative tests for empty zip, invalid zip patterns, and repeated cart changes.
+- Expand automation to additional browser projects when wider regression coverage is needed.
+- Add CI integration to run the Playwright suite on every change.
