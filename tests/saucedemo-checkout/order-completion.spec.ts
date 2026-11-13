@@ -21,7 +21,7 @@ test.describe('SCRUM-101 order completion', () => {
     await expect(page).toHaveURL(/\/checkout-complete\.html$/);
     await expect(page.locator('.complete-header')).toHaveText('Thank you for your order!');
     await expect(page.locator('.complete-text')).toContainText('Your order has been dispatched');
-    await expect(page.locator('[data-test="back-to-products"]')).toBeVisible();
+    await expect(page.locator('[data-test="back-to-products"]').first()).toBeVisible();
 
     await page.locator('[data-test="back-to-products"]').click();
     await expect(page).toHaveURL(/\/inventory\.html$/);

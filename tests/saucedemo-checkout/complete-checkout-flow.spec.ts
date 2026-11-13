@@ -29,6 +29,6 @@ test.describe('SCRUM-101 checkout flow', () => {
 
     await expect(page).toHaveURL(/\/checkout-complete\.html$/);
     await expect(page.locator('.complete-header')).toHaveText('Thank you for your order!');
-    await expect(page.locator('[data-test="back-to-products"]')).toBeVisible();
+    await expect(page.locator('[data-test="back-to-products"]').first()).toBeVisible();
   });
 });

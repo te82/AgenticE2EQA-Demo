@@ -1,80 +1,152 @@
-# SCRUM-101 Checkout Test Plan
+# SCRUM-101 - E-commerce Checkout Process Test Plan
 
-## User Story
-As a customer, I want to review my cart, complete the checkout flow, and receive order confirmation so that I can purchase products successfully and confidently.
+## Application Overview
 
-## Scope
-This plan covers the complete checkout flow for the SauceDemo ecommerce experience: product selection, cart review, checkout form validation, review, completion, and return to inventory.
-
-## Test Data
-- Username: standard_user
-- Password: secret_sauce
-- Product set: Sauce Labs Backpack, Sauce Labs Bike Light
-- Customer data: John Doe, 12345
-
-## Acceptance Criteria Coverage
-1. Cart page shows product details and pricing.
-2. User can continue shopping or proceed to checkout.
-3. Checkout form validates required fields and surfaces clear error messages.
-4. Checkout overview displays order summary with tax and total.
-5. Confirmation page appears after successful order completion.
-6. Navigation and cart state integrity are preserved across the work flow.
+Comprehensive test plan for the SauceDemo e-commerce checkout process covering all user flows from cart review through order completion. Tests include positive scenarios, validation handling, navigation flows, and edge cases across the complete customer purchase journey.
 
 ## Test Scenarios
 
-### 1. Cart Review and Navigation
-- Steps:
-  1. Log in as standard_user.
-  2. Add Sauce Labs Backpack and Sauce Labs Bike Light to the cart.
-  3. Open the cart.
-  4. Validate product names, prices, and the checkout button.
-  5. Click Continue Shopping and verify the user returns to inventory with the cart badge still showing 2 items.
-- Expected Results:
-  - Cart page loads with exactly 2 cart items.
-  - Product names match the added items.
-  - Checkout button is visible.
-  - Continue Shopping returns to inventory and preserves cart count.
+### 1. Checkout Process E2E Tests
 
-### 2. Validation Errors During Checkout
-- Steps:
-  1. Log in.
-  2. Add one item to the cart and proceed to checkout.
-  3. Attempt to continue without filling the form.
-  4. Fill only First Name and retry.
-  5. Fill First Name and Last Name and retry.
-- Expected Results:
-  - Error message appears for missing First Name.
-  - Error message appears for missing Last Name.
-  - Error message appears for missing Postal Code.
+**Seed:** `tests/seed.spec.ts`
 
-### 3. Happy Path Checkout Completion
-- Steps:
-  1. Log in.
-  2. Add two items to the cart.
-  3. Proceed through checkout.
-  4. Enter valid personal details.
-  5. Confirm the review screen and finish the order.
-- Expected Results:
-  - User reaches the checkout overview page.
-  - Total amount with tax is displayed correctly.
-  - Completion page shows Thank you for your order and a back-to-products option.
+#### 1.1. Complete Checkout Flow - Happy Path
 
-### 4. Order Completion and Return to Inventory
-- Steps:
-  1. Complete a valid checkout.
-  2. Confirm the thank-you page.
-  3. Click Back to Products.
-  4. Validate the cart is empty and the user is back on the inventory page.
-- Expected Results:
-  - Confirmation page loads successfully.
-  - Cart returns to empty state after returning to inventory.
+**File:** `tests/saucedemo-checkout/complete-checkout-flow.spec.ts`
 
-## Risk Areas
-- Required field validation must remain explicit and user friendly.
-- Cart state should not be dropped when the user navigates back and forth.
-- Total amount and order confirmation need to be consistent across payment and shipping review.
+**Steps:**
+  1. Login to application with standard_user credentials
+    - expect: User is successfully logged in
+    - expect: Products page is displayed
+  2. Add multiple products to cart (Backpack $29.99, Bike Light $9.99, Fleece Jacket $49.99)
+    - expect: Cart badge shows correct item count
+    - expect: Add to cart button changes to Remove
+    - expect: Cart icon updates dynamically
+  3. Navigate to cart page by clicking cart badge
+    - expect: Cart page displays all added items
+    - expect: Each item shows name, description, price, quantity
+    - expect: Continue Shopping and Checkout buttons are visible
+  4. Click Checkout button to proceed to information entry
+    - expect: Checkout information page loads
+    - expect: Form displays First Name, Last Name, Zip/Postal Code fields
+    - expect: Cancel and Continue buttons are present
+  5. Fill in checkout information (First Name: John, Last Name: Doe, Zip: 12345)
+    - expect: All form fields accept valid data
+    - expect: No validation errors appear
+  6. Click Continue to proceed to overview
+    - expect: Checkout overview page loads
+    - expect: All ordered items are displayed with quantities
+    - expect: Payment information shows SauceCard #31337
+    - expect: Shipping shows Free Pony Express Delivery
+    - expect: Price breakdown shows Item total: $89.97, Tax: $7.20, Total: $97.17
+  7. Click Finish to complete order
+    - expect: Order confirmation page displays
+    - expect: Success message 'Thank you for your order!' is shown
+    - expect: Order dispatch message is displayed
+    - expect: Back Home button is present
+  8. Click Back Home button
+    - expect: Returns to products page
+    - expect: Cart badge is cleared/removed
+    - expect: All products show Add to cart buttons
 
-## Exit Criteria
-- All core checkout flows pass in Chromium, Firefox, and WebKit.
-- Validation and completion flows behave as expected.
-- No critical defects remain open for the SCRUM-101 acceptance criteria.
+#### 1.2. Cart Review Functionality - AC1
+
+**File:** `tests/saucedemo-checkout/cart-review.spec.ts`
+
+**Steps:**
+  1. Login and add items with different prices to cart
+    - expect: Items are successfully added to cart
+  2. Navigate to cart page and verify item details display
+    - expect: All items show correct name, description, price
+    - expect: Quantity column displays correct values
+    - expect: Individual prices are visible for each item
+  3. Verify navigation options in cart
+    - expect: Continue Shopping button is present and functional
+    - expect: Checkout button is present and functional
+    - expect: Remove buttons are available for each item
+  4. Test Continue Shopping functionality
+    - expect: Returns to products page
+    - expect: Cart contents are preserved
+    - expect: Product states reflect cart contents
+  5. Test Remove item functionality
+    - expect: Item is removed from cart
+    - expect: Cart count updates
+    - expect: Product button changes to Add to cart
+
+#### 1.3. Checkout Information Entry Validation - AC2
+
+**File:** `tests/saucedemo-checkout/checkout-validation-errors.spec.ts`
+
+**Steps:**
+  1. Navigate to checkout information page with items in cart
+    - expect: Checkout information form is displayed
+    - expect: All required fields are present
+  2. Click Continue without filling any fields
+    - expect: Error message displays 'Error: First Name is required'
+    - expect: Red X indicators appear on all empty fields
+    - expect: Form remains on same page for correction
+  3. Fill only First Name and click Continue
+    - expect: Error message displays 'Error: Last Name is required'
+    - expect: Visual indicators persist for empty fields
+  4. Fill First Name and Last Name, leave Zip empty and click Continue
+    - expect: Error message displays 'Error: Postal Code is required'
+    - expect: Form validation prevents progression
+  5. Test error message dismissal functionality
+    - expect: Error message can be dismissed using X button
+    - expect: Form remains accessible for correction
+  6. Fill all fields with valid data and proceed
+    - expect: Form accepts valid data
+    - expect: Successfully progresses to checkout overview
+
+#### 1.4. Order Overview Verification - AC3
+
+**File:** `tests/saucedemo-checkout/order-completion.spec.ts`
+
+**Steps:**
+  1. Complete checkout information and reach overview page
+    - expect: Checkout overview page loads successfully
+  2. Verify item summary display
+    - expect: All ordered items are listed with QTY and Description
+    - expect: Item details match cart contents
+    - expect: Individual prices are displayed
+  3. Verify payment and shipping information
+    - expect: Payment Information shows 'SauceCard #31337'
+    - expect: Shipping Information shows 'Free Pony Express Delivery!'
+  4. Verify price calculations
+    - expect: Item total shows sum of all item prices
+    - expect: Tax calculation is accurate (8% rate)
+    - expect: Total amount includes tax
+    - expect: All monetary values are formatted correctly
+  5. Verify navigation options
+    - expect: Cancel button is present and functional
+    - expect: Finish button is present and functional
+
+#### 1.5. Order Completion Confirmation - AC4
+
+**File:** `tests/saucedemo-checkout/order-completion.spec.ts`
+
+**Steps:**
+  1. Complete entire checkout flow up to Finish button
+    - expect: Checkout overview page is displayed with all details
+  2. Click Finish button to complete order
+    - expect: Order confirmation page loads
+    - expect: Page title shows 'Checkout: Complete!'
+  3. Verify success messaging
+    - expect: Success message 'Thank you for your order!' is displayed
+    - expect: Order dispatch message confirms delivery
+    - expect: Pony Express image/icon is shown
+  4. Verify cart clearing functionality
+    - expect: Cart badge is no longer visible
+    - expect: Cart has been cleared of all items
+  5. Test Back Home navigation
+    - expect: Back Home button returns to products page
+    - expect: All products show Add to cart buttons
+    - expect: User can start new shopping session
+
+## Execution Notes
+
+- Primary app URL: https://www.saucedemo.com/
+- Username: standard_user
+- Password: secret_sauce
+- Browser target: Chromium desktop
+- Focus: cart review, checkout validation, order completion, and navigation integrity
