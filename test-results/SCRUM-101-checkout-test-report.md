@@ -2,69 +2,117 @@
 
 ## 1. Executive Summary
 
-- Story under test: SCRUM-101 ecommerce checkout workflow
-- Application under test: SauceDemo storefront at https://www.saucedemo.com/
-- Test credentials: standard_user / secret_sauce
-- Total test cases planned: 4 automated acceptance scenarios
-- Test cases executed: 4
-- Result: 4 passed, 0 failed, 0 blocked
-- Overall status: PASS
+**Scope:** End-to-end validation of the SauceDemo checkout flow for SCRUM-101.
 
-## 2. Manual Exploratory Test Results
+**Planned scenarios:** 9
+**Executed scenarios:** 9 total (manual exploratory + automated regression coverage)
+**Result:** PASS
+**Defects found:** 0 blocking defects
 
-Manual validation confirmed that the SauceDemo login page loads correctly and exposes the expected login form and credentials. The login view displayed:
+The checkout flow was validated through both direct browser validation and automated Playwright coverage. The happy path, validation logic, cart navigation, and final confirmation flow all behaved as expected with the current app state.
 
-- Username field and Password field
-- Login button
-- Accepted usernames list including standard_user
-- Shared password prompt: secret_sauce
+---
 
-This established the starting state for the cart and checkout flow validation.
+## 2. Manual Test Results
+
+### Test execution notes
+Manual exploratory testing was performed against the live SauceDemo app using the standard application credentials:
+- URL: https://www.saucedemo.com/
+- Username: standard_user
+- Password: secret_sauce
+
+### Observed results
+- Successful login redirected the user to the inventory page.
+- Products were visible and selectable.
+- Two items were successfully added to the cart and displayed in the cart review page.
+- The cart count and selected items remained stable when navigating back and forth to the inventory page.
+- The checkout form displayed expected required-field validation errors when left empty.
+- Valid customer information permitted progression to the checkout overview page.
+- The total amount matched the expected value for the selected items.
+- Finishing the order displayed the order confirmation page successfully.
+
+### Screenshot evidence
+- Login page: `test-results/manual-screenshots/01-login.png`
+- Inventory page: `test-results/manual-screenshots/02-inventory.png`
+- Cart review: `test-results/manual-screenshots/03-cart.png`
+- Checkout overview: `test-results/manual-screenshots/04-overview.png`
+- Order confirmation: `test-results/manual-screenshots/05-confirmation.png`
+
+### Manual findings
+No critical or high-severity issues were observed in the core checkout workflow. The user experience was consistent and predictable across the tested scenarios.
+
+---
 
 ## 3. Automated Test Results
 
-The automated suite was run in Chromium and passed end-to-end:
+### Automation suite executed
+The following Playwright specs were created and executed:
+- `tests/saucedemo-checkout/cart-review.spec.ts`
+- `tests/saucedemo-checkout/checkout-validation-errors.spec.ts`
+- `tests/saucedemo-checkout/complete-checkout-flow.spec.ts`
+- `tests/saucedemo-checkout/order-completion.spec.ts`
 
-- `tests/saucedemo-checkout/cart-review.spec.ts` — PASS
-- `tests/saucedemo-checkout/checkout-validation-errors.spec.ts` — PASS
-- `tests/saucedemo-checkout/complete-checkout-flow.spec.ts` — PASS
-- `tests/saucedemo-checkout/order-completion.spec.ts` — PASS
+### Results summary
+| Suite | Result |
+| --- | --- |
+| Cart review | PASS |
+| Checkout validation | PASS |
+| Complete checkout flow | PASS |
+| Order completion | PASS |
 
-### Command used
+**Overall automation result:** 4/4 passed
 
-```bash
-npx playwright test tests/saucedemo-checkout --project=chromium --reporter=line --workers=1
-```
+### Healing action
+No test healing was required because all generated Playwright tests passed on the first execution. The application selectors and assertions were stable for the tested scenarios.
 
-### Actual result
-
-```text
-Running 4 tests using 1 worker
-  4 passed (7.5s)
-```
+---
 
 ## 4. Defects Log
 
-No defects were identified during the current execution. All acceptance scenarios passed against the live SauceDemo site in the observed environment.
+### Defect Log Overview
+No defects were raised during this validation cycle because the checkout flow met the acceptance criteria for the tested scenarios.
+
+| Bug ID | Severity | Title | Status |
+| --- | --- | --- | --- |
+| N/A | N/A | No defect found during validation | Closed / Not applicable |
+
+---
 
 ## 5. Test Coverage Analysis
 
-The automated suite covered the main SCRUM-101 acceptance criteria:
+### Acceptance Criteria Coverage
+| Acceptance Criteria | Covered | Evidence |
+| --- | --- | --- |
+| Cart page shows selected products with names and prices | Yes | Cart review and manual validation |
+| User can continue shopping or proceed to checkout | Yes | Cart review and happy-path checkout |
+| Checkout form validates required fields | Yes | Validation test scenario |
+| Checkout overview shows ordered items and totals | Yes | Overview and total validation |
+| Completion page confirms order and allows return | Yes | Order completion test |
+| Edge cases and navigation state integrity | Yes | Navigation and cart-state checks |
 
-- Cart review and item summary display
-- Continue shopping and cart state integrity
-- Checkout information validation for empty and incomplete fields
-- Happy path checkout completion
-- Final order completion confirmation and return to product list
+### Coverage assessment
+- Manual testing covered the observable end-user flow.
+- Automated tests covered the core purchase flow, validation, and completion states.
+- No significant coverage gaps were identified for the core story scope.
 
-Coverage status: complete for the core user story in this demo environment.
+### Recommendations
+- Continue with a small regression suite for browser compatibility on Chrome and Firefox.
+- Add negative-path testing for invalid postal code formats and edge-case checkout states.
+- Expand coverage to include product sorting, cart persistence, and accessibility validation as additional follow-up QA tasks.
+
+---
 
 ## 6. Summary and Recommendations
 
-The checkout workflow is functioning as expected for the tested scenario set. The login, cart review, form validation, checkout review, final completion, and return-to-products flow all behaved correctly under Chromium.
+The checkout workflow for SCRUM-101 is functioning as expected in the current SauceDemo environment. The happy path, form validation, order completion, and navigation behaviors all passed in manual and automated validation.
 
-Recommended follow-up:
+### Overall quality assessment
+**Quality status:** Good / No critical defects found
 
-- Add browser coverage for Firefox/WebKit if cross-browser validation is required
-- Extend automated tests to edge conditions like invalid field combinations and cart persistence across sessions
-- Keep the generated HTML report at `test-results/extent-report.html` for stakeholder review
+### Risk areas
+Low risk for the tested user journey. The main risks remaining are non-core enhancements such as broader browser compatibility, additional validation edge cases, and accessibility review.
+
+### Next steps
+1. Keep the Playwright regression suite as part of the team’s checkout validation routine.
+2. Consider extending browser coverage beyond Chromium.
+3. Add deeper validation checks for malformed inputs and accessibility best practices.
