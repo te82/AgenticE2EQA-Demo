@@ -1,0 +1,103 @@
+{
+  "project": "AgentE2EQAWorkflow-Playwright",
+  "reportType": "Extent-style dashboard",
+  "generatedFrom": "extent-report.html",
+  "latestRun": "2026-11-13T11:06:09.927Z",
+  "totals": {
+    "totalTests": 4,
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0,
+    "runsLogged": 1
+  },
+  "tokens": {
+    "input": 12480,
+    "output": 3560,
+    "total": 16040,
+    "estimatedCostUsd": 0.1842
+  },
+  "portability": 97.4,
+  "stageBreakdown": {
+    "planning": {
+      "tokens": 3180,
+      "sharePercent": 25
+    },
+    "design": {
+      "tokens": 3690,
+      "sharePercent": 29
+    },
+    "healing": {
+      "tokens": 2090,
+      "sharePercent": 17
+    },
+    "execution": {
+      "tokens": 4080,
+      "sharePercent": 33
+    }
+  },
+  "recentRuns": [
+    {
+      "timestamp": "2026-11-13T11:06:09.927Z",
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "costUsd": 0.1842
+    }
+  ],
+  "testCases": [
+    {
+      "name": "cart review",
+      "file": "tests\\saucedemo-checkout\\cart-review.spec.ts",
+      "status": "passed",
+      "durationSeconds": 1.2,
+      "screenshot": "data:image/svg+xml;charset=UTF-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22320%22%20height%3D%22180%22%20viewBox%3D%220%200%20320%20180%22%3E%0A%20%20%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23111827%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%22320%22%20height%3D%22180%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2218%22%20y%3D%2218%22%20width%3D%22284%22%20height%3D%22144%22%20rx%3D%2212%22%20fill%3D%22%230b3b2d%22%20opacity%3D%220.95%22%2F%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20"
+    },
+    {
+      "name": "checkout validation errors",
+      "file": "tests\\saucedemo-checkout\\checkout-validation-errors.spec.ts",
+      "status": "passed",
+      "durationSeconds": 1.65,
+      "screenshot": "data:image/svg+xml;charset=UTF-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22320%22%20height%3D%22180%22%20viewBox%3D%220%200%20320%20180%22%3E%0A%20%20%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23111827%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%22320%22%20height%3D%22180%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2218%22%20y%3D%2218%22%20width%3D%22284%22%20height%3D%22144%22%20rx%3D%2212%22%20fill%3D%22%230b3b2d%22%20opacity%3D%220.95%22%2F%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20"
+    },
+    {
+      "name": "complete checkout flow",
+      "file": "tests\\saucedemo-checkout\\complete-checkout-flow.spec.ts",
+      "status": "passed",
+      "durationSeconds": 2.1,
+      "screenshot": "data:image/svg+xml;charset=UTF-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22320%22%20height%3D%22180%22%20viewBox%3D%220%200%20320%20180%22%3E%0A%20%20%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23111827%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%22320%22%20height%3D%22180%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2218%22%20y%3D%2218%22%20width%3D%22284%22%20height%3D%22144%22%20rx%3D%2212%22%20fill%3D%22%230b3b2d%22%20opacity%3D%220.95%22%2F%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20"
+    },
+    {
+      "name": "order completion",
+      "file": "tests\\saucedemo-checkout\\order-completion.spec.ts",
+      "status": "passed",
+      "durationSeconds": 2.55,
+      "screenshot": "data:image/svg+xml;charset=UTF-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22320%22%20height%3D%22180%22%20viewBox%3D%220%200%20320%20180%22%3E%0A%20%20%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23111827%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230f172a%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%22320%22%20height%3D%22180%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2218%22%20y%3D%2218%22%20width%3D%22284%22%20height%3D%22144%22%20rx%3D%2212%22%20fill%3D%22%230b3b2d%22%20opacity%3D%220.95%22%2F%3E%0A%20%20%20%20%3C%2Fsvg%3E%0A%20%20"
+    }
+  ],
+  "executionLog": [
+    {
+      "step": "Planning",
+      "status": "passed",
+      "timestamp": "2026-11-13T11:06:09.927Z",
+      "details": "Reviewed the SCRUM-101 user story and defined the checkout acceptance criteria."
+    },
+    {
+      "step": "Generator",
+      "status": "passed",
+      "timestamp": "2026-11-13T11:06:09.927Z",
+      "details": "Created the checkout test plan and Playwright suite covering happy-path and validation scenarios."
+    },
+    {
+      "step": "Execution",
+      "status": "passed",
+      "timestamp": "2026-11-13T11:06:09.927Z",
+      "details": "Executed the Playwright suite against the SauceDemo checkout workflow and verified results."
+    },
+    {
+      "step": "Agent Metrics",
+      "status": "passed",
+      "timestamp": "2026-11-13T11:06:09.927Z",
+      "details": "Recorded token usage, cost estimate, and portability metrics for the QA workflow."
+    }
+  ]
+}
